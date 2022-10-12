@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'accuit.dart';
 import 'main.dart';
+import 'connexion.dart';
 
 
 class inscription extends StatelessWidget {

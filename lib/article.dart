@@ -128,7 +128,7 @@ bool zer  = true;
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: const [
-                               Icon(FontAwesomeIcons.calendarMinus,color: Colors.white,),
+                               Icon(FontAwesomeIcons.circleMinus,color: Colors.white,),
                                Text('1',style: TextStyle(color: Colors.white),),
                                Icon(Icons.add_circle_outline,color: Colors.white,),
                             ],

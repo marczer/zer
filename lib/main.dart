@@ -1,8 +1,11 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/article.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import 'connexion.dart';
 import 'accuit.dart';
 import 'inscription.dart';
 
@@ -25,220 +28,179 @@ class MyApp extends StatelessWidget {
         fontFamily: 'ProductSans',
        ),
        debugShowCheckedModeBanner: false,  
-       home: Home(),
+       home: SplashScreen(),
     );
     
   }
 }
 
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
 
-
-class Home extends StatefulWidget {
-  const Home({super.key});
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  void _showDialog(){
-    showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (context) {
-        
-        return AlertDialog(
-        
-          title: const Text('Licence',textAlign: TextAlign.center,), 
-          
-          content: const Text('accepter la licence de cette application \n de cette pour avoir acese a la platform'),
-          actions: [
-            MaterialButton(
-              color: Colors.blue,
-              onPressed: (){
-                Navigator.pop(context);
-                final snackBar =   SnackBar(
-                content: Text("vous n'aves par deoit au a cette platforme"),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              },
-              child: Text('non'),
-              ),
-            MaterialButton(
-              color: Colors.blue,
-              onPressed: (){Navigator.push(context,MaterialPageRoute(builder: (context) => const principal()),);},
-              child: Text('oui'),
-              ),
-          ],
-        );
-      }
-      );
-  }
-  bool check = false;
   @override
   Widget build(BuildContext context) {
-    
-  
-    final ButtonStyle style =  ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)) ,fixedSize: Size(0, 50),textStyle: const TextStyle(fontSize: 20),backgroundColor: Color.fromARGB(255, 5, 53, 92));
-
-    return Scaffold(
-        // appBar: AppBar( 
-        //   leading: const Icon(Icons.menu),
-        //   title: const Align (child:Text("IGS.COM"),alignment: Alignment.center),
-        //   actions: const [Icon(Icons.search)], 
-        // ),
-        
-        body: Container(
-            decoration: const BoxDecoration(
-            image: DecorationImage(
-            image: AssetImage("assets/image/Format.png"), 
-            fit: BoxFit.cover,
+    return AnimatedSplashScreen(
+        centered: true,
+        splash: SizedBox(
+          height: 500,
+          width: 500,
+          child: Container(
+            height: 100,
+            width: 100,
+            child: Image.asset(
+              'assets/image/testrefait.png',
+              height: 300,
+              width: 300,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
-          child: ListView(
-            
-            children:  [
-              Container(
-                // height: 400,
-                // width: 300,
-                // child: Row(
-                //   children: const [
-                //     Text('welcome  Back ',style: TextStyle(fontSize: 20,color: Colors.blue),),
-                //     SizedBox(width: 50.0,),
-                //     Image(image: AssetImage('assets/image/image2.jpg'),height: 100,width: 75,)
-                //   ],
-                // ),
-                padding: const EdgeInsets.symmetric(vertical: 50.0,horizontal: 30.0),
-                child: Form(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                            // ignore: prefer_const_constructors
-                            Center(
-                              child: Row(
-                                
-                                  children:  const [
-                                    SizedBox(width: 20.0,),
-                                    Text('welcome \nBack ',style: TextStyle(fontSize: 30,color: Color.fromARGB(255, 5, 53, 92)),),
-                                    SizedBox(width: 10.0,),
-                                    Image(image: AssetImage('assets/image/testrefait.png'),height: 150,width: 150,)
-                                    ],
-                              ),
-                            ),
-                            // Image.asset('assets/image/image2.jpg',height: 100.0,width: 100.0,),
-                            const SizedBox(height: 10.0,),
-                            TextFormField(
-                              // ignore: prefer_const_constructors
-                              decoration: InputDecoration(
-                                labelText: 'Email',
-                                border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                              ),
-                            ),
+        backgroundColor: Colors.grey.shade200,
+        nextScreen: page());
+  }
+}
 
-                            const SizedBox(height: 30.0,),
-                            
-                            TextFormField(
-                              // ignore: prefer_const_constructors
-                              decoration: InputDecoration(
-                                labelText: 'password',
-                                border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                                
-                              ),
-                              obscureText: true,
-                            ),   
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children:  [
-                                        Checkbox(activeColor: Color.fromARGB(255, 5, 53, 92), value: check, onChanged: (bool? value) {
-                                          setState(() {
-                                            check= value!;
-                                          });
-                                        },
-                                        
-                                      ),
-                                      const Text('Remember me'),
-                                      Container(child: const Text('Forgot password?',style: TextStyle(color: Color.fromARGB(255, 5, 53, 92)),),
-                                       margin: const EdgeInsets.fromLTRB(75, 0, 0, 0),
-                                       )
-                                             ],
-                            ),                       
-                            const SizedBox(height: 20.0,),
-                            Container(
-                                  height: 50,
-                                  decoration: const ShapeDecoration(
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                                    gradient: LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [
-                                        Color(0xFF550BFC),
-                                        Color(0xFF00FFA7),
-                                      ],
-                                    ),
-                                  ),
-                                  child: MaterialButton(
-                                    materialTapTargetSize:
-                                        MaterialTapTargetSize.shrinkWrap,
-                                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                                    child: const Text(
-                                      'Login',
-                                      style: TextStyle(color: Colors.white, fontSize: 20),
-                                    ),
-                                    onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => principal(),));},
-                                  ),
-                      ),
-                            const SizedBox(height: 20.0,), 
-                                 Center(
-                                  child: Row(children: const [
-                                      Expanded(child: Divider(color: Color.fromARGB(255, 43, 40, 40),)),
-                                      Text("Login with"),
-                                      Expanded(child: Divider(color: Color.fromARGB(255, 43, 40, 40),)),
-                                  ],),
-                                  
-                                ),
-                              const SizedBox(height: 20.0,),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const <Widget>[ 
-                                       
-                                       Icon( Icons.facebook, color: Color.fromARGB(255, 7, 62, 107), size: 24.0, ),
-                                       SizedBox(width: 30.0,),
-                                       Icon(FontAwesomeIcons.twitter,color: Colors.blue, size: 24.0, ),
-                                       SizedBox(width: 30.0,),
-                                       Image(image: AssetImage('assets/image/image3.png'),height: 24,width: 24,),
-                                       SizedBox(width: 30.0,),
-                                       Icon( Icons.apple_sharp, color: Colors.black, size: 30.0,),
-                                       
-                                            ],
-                              ),
-                              const SizedBox(height: 20.0,),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("Don't have an account?"),
-                                  SizedBox(width: 10.0,),
-                                  GestureDetector(
-                                    onTap: (){ Navigator.push(context, MaterialPageRoute(builder: (context) => inscription(),)); },
-                                    child: Text('Sign up',style: TextStyle(color: Color.fromARGB(255, 5, 53, 92)),),
-                                  )
-                                ],
-                                // mainAxisAlignment: MainAxisAlignment.center,
-                                // children: const [
-                                //   Text("Don't have an account?"),
-                                //   SizedBox(width: 10.0,),
-                                  
-                                //   Text('Sign up',style: TextStyle(color: Color.fromARGB(255, 5, 53, 92)),)],
-                              )
-                   ],
+
+class page extends StatefulWidget {
+  const page({super.key});
+
+
+
+  @override
+  State<page> createState() => _pageState();
+}
+
+class _pageState extends State<page> {
+
+PageController _controller =  PageController();
+
+bool onLasrPage = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          PageView(
+          controller: _controller,
+          onPageChanged: (index) {
+            setState(() {
+              onLasrPage = (index == 2);
+            });
+          },
+          children: [
+            Container(
+             color: Color(0xFFF6F6F6),
+             child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('assets/image/testrefait.png',height: 150.0,width: 150.0,),
+                  SizedBox(height: 15,),
+                  Text('MASTERCLASS',style: TextStyle(color: Colors.yellow, fontSize: 30),),
+                  SizedBox(height: 10,),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child:  Text("Lorem Ipsum est simplement un faux texte de l'industrie de l'impression et de la composition."),
+
                   ),
-                   
+
+                  // Text("Lorem Ipsum est simplement un faux texte de l'industrie de "),
+                ],
+              ),
+             ),
+            ),
+            Container(
+             color: Color(0xFFF6F6F6),
+             child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('assets/image/illustration.png',height: 150.0,width: 150.0,),
+                  SizedBox(height: 15,),
+                  Text('MASTERCLASS',style: TextStyle(color: Colors.yellow, fontSize: 30),),
+                  SizedBox(height: 10,),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child:  Text("Lorem Ipsum est simplement un faux texte de l'industrie de l'impression et de la composition."),
+
+                  ),
+
+                  // Text("Lorem Ipsum est simplement un faux texte de l'industrie de "),
+                ],
+              ),
+             ),
+            ),
+            Container(
+             color: Color(0xFFF6F6F6),
+             child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('assets/image/buffet.png',height: 150.0,width: 150.0,),
+                  SizedBox(height: 15,),
+                  Text('MASTERCLASS',style: TextStyle(color: Colors.yellow, fontSize: 30),),
+                  SizedBox(height: 10,),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child:  Text("Lorem Ipsum est simplement un faux texte de l'industrie de l'impression et de la composition."),
+
+                  ),
+
+                  // Text("Lorem Ipsum est simplement un faux texte de l'industrie de "),
+                ],
+              ),
+             ),
+            ),
+          ],
+        ),
+        Container(
+          alignment: Alignment(0, 0.75),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(onPressed: () {
+                _controller.nextPage(
+                  duration: Duration(milliseconds: 500),
+                 curve: Curves.easeIn,);
+              }, 
+              icon: Icon( Icons.arrow_back, color: Colors.black, size: 20.0,),
+              ),
+              SmoothPageIndicator(
+                controller: _controller,
+                count: 3,
+                effect:SlideEffect(
+                  spacing : 8,
+                  dotWidth : 10,
+                  dotHeight : 3,
+                  
                 ),
-                ),
-              ]  ),
-                ),
-              );
-            }
-          }
+              ),
+              onLasrPage
+               ?
+              InkWell(
+                onTap: () {
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => const Home()),);
+                },
+                child: Text('contunier')
+                )
+               :IconButton(onPressed: () {
+                _controller.nextPage(
+                  duration: Duration(milliseconds: 500),
+                 curve: Curves.easeIn,);
+              },
+               icon: Icon( Icons.arrow_forward, color: Colors.black, size: 20.0,),
+               ),
+            ],
+          )
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
 //               // Container(
 
 //               // )

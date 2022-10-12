@@ -34,7 +34,11 @@ class _principalState extends State<principal> {
                 iconTheme: IconThemeData(color: Colors.black),
                 elevation: 5.0,
                 backgroundColor: Colors.white,
-                leading: Icon(Icons.menu),
+                leading: InkWell(
+                   onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const principal(),));
+                   },
+                   child: Icon(Icons.menu)),
                 actions: [
                   InkWell(
                     onTap: () {},
@@ -72,7 +76,7 @@ class _principalState extends State<principal> {
                               decoration: InputDecoration(
                                 // labelText: 'Email',
                                 hintText: 'Search',
-                                border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(0)),borderSide: BorderSide(color: Colors.transparent) ),
+                                border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5)),borderSide: BorderSide(color: Colors.transparent) ),
                                 prefixIcon: const Icon( Icons.search, color: Colors.black, size: 20.0,),
                          ),
                       ),  
@@ -81,7 +85,7 @@ class _principalState extends State<principal> {
                     Container(
                                   height: 40,width: 40,
                                   decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.all(Radius.circular(0)),
+                                    borderRadius: BorderRadius.all(Radius.circular(5)),
                                     color: Color(0xFFF6F6F6),
                                     ),
                                     child: const Icon(Icons.filter_alt_outlined),
@@ -102,7 +106,7 @@ class _principalState extends State<principal> {
                   Container( width: 130,height: 1,color: Colors.black, ),
                   // Divider(color: Color.fromARGB(255, 43, 40, 40), height: 50, ),
                   SizedBox(width: 30,),
-                  Text('See All',style: TextStyle(color: Colors.blue),),
+                  Text('See All',style: TextStyle(color: Color.fromARGB(255, 5, 53, 92)),),
                 ],
               ),
                SizedBox(
@@ -166,7 +170,7 @@ class _principalState extends State<principal> {
                   Container( width: 130,height: 1,color: Colors.black, ),
                   // Divider(color: Color.fromARGB(255, 43, 40, 40), height: 50, ),
                   SizedBox(width: 30,),
-                  Text('See All',style: TextStyle(color: Colors.blue),),
+                  Text('See All',style: TextStyle(color: Color.fromARGB(255, 5, 53, 92)),),
                 ],
               ),
               SizedBox(
@@ -273,7 +277,7 @@ class _principalState extends State<principal> {
               
               BottomNavigationBarItem(icon: Padding(
                 padding: EdgeInsets.only(left: 130),
-                child: Icon(Icons.person,color: Colors.black,),
+                child: Icon(Icons.person,color: Colors.grey,),
               ), label: ""),
             ]),
           ),
